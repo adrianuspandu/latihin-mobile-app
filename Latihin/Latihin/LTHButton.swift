@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// A custom reusable button that matches the design language and color of the app. The button
+///  has 5 variants: .primary, .secondary, .disabled, .destructive, and .loading
+
 struct LTHButton: View {
     
     let title: String
@@ -32,7 +35,7 @@ struct LTHButton: View {
                     // Progress View for loading variant
                     if variant == .loading {
                         ProgressView()
-                            .tint(Color(.systemFill))
+                            .tint(Color(.systemBackground))
                     }
                     
                     // Button Label
