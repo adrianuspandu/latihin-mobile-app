@@ -11,10 +11,7 @@ struct ContentView: View {
     @State var text = ""
     
     var body: some View {
-        VStack {
-            LTHTextField(text: $text, label: "Email", type: .email, placeholder: "johnappleseed@example.com", errorMessage: "Please enter a valid email address")
-        }
-        .padding()
+        WelcomeView()
     }
 }
 
