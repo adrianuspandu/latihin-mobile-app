@@ -11,6 +11,20 @@ enum TextFieldType {
     case name
     case email
     case password
+    case normal
+    
+    var keyboardType: UIKeyboardType {
+        switch self {
+        case .name:
+            return .default
+        case .email:
+            return .emailAddress
+        case .password:
+            return .asciiCapable
+        case .normal:
+            return .default
+        }
+    }
 }
 
 struct LTHTextField: View {
@@ -18,7 +32,7 @@ struct LTHTextField: View {
     @State var isValid = false
     
     var label: String?
-    var type: TextFieldType?
+    var type: TextFieldType
     let required = true
     var placeholder = ""
     var errorMessage: String?
@@ -45,7 +59,9 @@ struct LTHTextField: View {
                     })
                 
                     // MARK: SecureField UI Modifiers
+                    .keyboardType(type.keyboardType)
                     .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 10)
                     .background(Color(.secondarySystemBackground))
@@ -67,6 +83,9 @@ struct LTHTextField: View {
                 })
                 
                 // MARK: TextField UI Modifiers
+                .keyboardType(type.keyboardType)
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 10)
                 .background(Color(.secondarySystemBackground))
@@ -78,8 +97,8 @@ struct LTHTextField: View {
             }
             
             // MARK: TextField Error Message
-            if !text.isEmpty && !isValid {
-                Text("Please enter a valid text")
+            if required && !text.isEmpty && !isValid {
+                Text(errorMessage ?? "Invalid input")
                     .font(.callout)
                     .foregroundStyle(Color(.systemRed))
             }
