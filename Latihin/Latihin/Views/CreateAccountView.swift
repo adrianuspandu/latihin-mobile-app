@@ -72,7 +72,7 @@ struct CreateAccountView: View {
     func emailTextfield() -> some View {
         VStack(alignment: .leading) {
             LTHTextFieldLabel("Email address", required: true)
-            TextField("Email address", text: $viewModel.email, prompt: Text("John Appleseed"))
+            TextField("Email address", text: $viewModel.email, prompt: Text("john@appleseed.com"))
                 .lthTextFieldStyle(isValid: viewModel.email.isEmpty || viewModel.emailIsValid)
                 .textInputAutocapitalization(.never)
                 .keyboardType(.emailAddress)

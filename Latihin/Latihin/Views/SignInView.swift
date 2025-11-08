@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct SignInView: View {
-    @State var email = ""
-    @State var password = ""
-    @State var isValid = false
+    @StateObject var viewModel = SignInViewVM()
     
     var body: some View {
         
@@ -19,14 +17,34 @@ struct SignInView: View {
             
             VStack(spacing: 20) {
                 
-                LTHTextField(text: $email, label: "Email address", type: .email, placeholder: "johnappleseed@example.com", errorMessage: "Please enter a valid email address.")
+                // MARK: Email TextField
+                VStack(alignment: .leading) {
+                    LTHTextFieldLabel("Email address", required: true)
+                    TextField("Email address", text: $viewModel.email, prompt: Text("john@appleseed.com"))
+                        .lthTextFieldStyle(isValid: viewModel.email.isEmpty || viewModel.emailIsValid)
+                        .textInputAutocapitalization(.never)
+                        .keyboardType(.emailAddress)
+                    
+                    if !viewModel.email.isEmpty && !viewModel.emailIsValid {
+                        Text("Please enter a valid email address")
+                            .font(.callout)
+                            .foregroundStyle(Color(.systemRed))
+                    }
+                }
                 
-                LTHTextField(text: $password, label: "Password", type: .password, errorMessage: "Incorrect Password")
+                // MARK: Password TextField
+                VStack(alignment: .leading) {
+                    LTHTextFieldLabel("Password", required: true)
+                    SecureField("Password", text: $viewModel.password, prompt: Text("Password"))
+                        .lthSecureFieldStyle(isValid: true)
+                        .textInputAutocapitalization(.never)
+                        .keyboardType(.default)
+                }
             }
             
             Spacer()
             
-            LTHButton(title: "Sign in", variant: isValid ? .primary : .disabled) {
+            LTHButton(title: "Sign in", variant: viewModel.formIsValid ? .primary : .disabled) {
                 // Action here
             }
             
