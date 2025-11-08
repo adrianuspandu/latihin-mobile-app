@@ -14,13 +14,14 @@ enum TextFieldType {
 }
 
 struct LTHTextField: View {
-    @State var text = ""
+    @Binding var text: String
     @State var isValid = false
     
     var label: String?
     var type: TextFieldType?
     let required = true
     var placeholder = ""
+    var errorMessage: String?
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -85,7 +86,7 @@ struct LTHTextField: View {
         }
     }
     
-    func validate() -> Bool {
+    private func validate() -> Bool {
         switch type {
         case .name:
             return text.wholeMatch(of: nameRegex) != nil
@@ -105,6 +106,6 @@ struct LTHTextField: View {
 
 #Preview {
     VStack {
-        LTHTextField(label: "Name", type: .name, placeholder: "John Appleseed")
+        LTHTextField(text: .constant(""), label: "Name", type: .name, placeholder: "John Appleseed")
     }
 }
