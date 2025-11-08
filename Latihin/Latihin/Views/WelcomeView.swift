@@ -34,11 +34,12 @@ struct WelcomeView: View {
                 
                 // MARK: Buttons
                 VStack(alignment: .center, spacing: 20) {
-                    LTHButton(title: "Create account", variant: .primary) {
-                        // Create account action here
+                    NavigationLink(destination: CreateAccountView()) {
+                        LTHButtonNavLink(title: "Create account", variant: .primary)
                     }
-                    LTHButton(title: "Sign in", variant: .secondary) {
-                        // Sign in action here
+                    
+                    NavigationLink(destination: SignInView()) {
+                        LTHButtonNavLink(title: "Sign in", variant: .secondary)
                     }
                 }
             }
