@@ -11,7 +11,7 @@ struct WelcomeView: View {
     var body: some View {
         NavigationStack {
             
-            VStack {
+            VStack(alignment: .center) {
                 // MARK: Welcome Illustration
                 Image("illustration-welcome")
                     .resizable()
@@ -28,6 +28,7 @@ struct WelcomeView: View {
                     
                     Text("Latihin is an app that helps sport lovers find and meet coaches in your area.")
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Spacer().frame(height: 40)
                 
