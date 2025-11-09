@@ -1,5 +1,5 @@
 //
-//  HomeColorCodedSportCard.swift
+//  LTHCircleSportCardItem.swift
 //  Latihin
 //
 //  Created by Rosa Tiara Galuh on 31/10/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - [CircleSportCardItem]
+// MARK: - [LTHCircleSportCardItem]
 /// A view representing an individual sport card with a circular icon and label.
 ///
 /// A component that displays a sport as a vertical card with:
@@ -26,7 +26,7 @@ import SwiftUI
 /// ```
 ///
 
-struct CircleSportCardItem: View {
+struct LTHCircleSportCardItem: View {
     let sport: Sport
 
     var body: some View {

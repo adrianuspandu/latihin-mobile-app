@@ -1,5 +1,5 @@
 //
-//  CircleSportCards.swift
+//  LTHCircleSportCards.swift
 //  Latihin
 //
 //  Created by Rosa Tiara Galuh on 31/10/25.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-// MARK: - [CircleSportCards]
+// MARK: - [LTHCircleSportCards]
 /// A horizontal collection view displaying multiple sport cards (scrollable).
 /// This view arranges sport cards in a horizontal scrollable layout with consistent spacing.
 /// Each card is rendered using `CircleSportCardItem` and displays a sport's icon and name.
 
-struct CircleSportCards: View {
+struct LTHCircleSportCards: View {
     let sports: [Sport] = [
         Sport(name: .tennis, iconName: .iconTennis, circleCardBackgroundColor: .tennisSport),
         Sport(name: .basketball, iconName: .iconBasketball, circleCardBackgroundColor: .basketballSport),
@@ -26,7 +26,7 @@ struct CircleSportCards: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 24) {
                 ForEach(sports) { sport in
-                    CircleSportCardItem(sport: sport)
+                    LTHCircleSportCardItem(sport: sport)
                 }
             }
         }
@@ -36,7 +36,7 @@ struct CircleSportCards: View {
 
 #Preview {
     VStack {
-        CircleSportCards()
+        LTHCircleSportCards()
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .background(Color(uiColor: .systemBackground))
