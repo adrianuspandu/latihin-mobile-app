@@ -46,6 +46,7 @@ struct LTHButton: View {
                 }
             }
         }
+        .disabled(variant == .disabled)
     }
 }
 
