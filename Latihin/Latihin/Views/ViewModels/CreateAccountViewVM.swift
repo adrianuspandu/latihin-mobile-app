@@ -14,6 +14,9 @@ class CreateAccountViewVM: ObservableObject {
     @Published var password = ""
     @Published var confirmPassword = ""
     
+    let namePlaceholder = "John Appleseed"
+    let emailPlaceholder = "john@appleseed.com"
+    
     var nameIsValid: Bool { name.wholeMatch(of: nameRegex) != nil }
     var emailIsValid: Bool { email.wholeMatch(of: emailRegex) != nil }
     var passwordIsValid: Bool { password.wholeMatch(of: passwordRegex) != nil }
