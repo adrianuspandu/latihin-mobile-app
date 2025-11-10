@@ -28,7 +28,7 @@ struct CreateAccountView: View {
             
             // MARK: Button
             LTHButton(title: "Create account", variant: viewModel.formIsValid ? .primary : .disabled) {
-                viewModel.handleCreateAccount()
+                viewModel.registerAccount()
             }
             
             Spacer().frame(height: 40)
