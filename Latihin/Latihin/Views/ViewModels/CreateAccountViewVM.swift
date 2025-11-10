@@ -6,6 +6,8 @@
 //
 
 import Combine
+import FirebaseAuth
+import FirebaseFirestore
 import SwiftUI
 
 class CreateAccountViewVM: ObservableObject {
@@ -30,8 +32,23 @@ class CreateAccountViewVM: ObservableObject {
         }
     }
     
-    func handleCreateAccount() {
+    func registerAccount() {
         guard formIsValid else { return }
         
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
+            guard let userId = result?.user.uid else { return }
+            
+            self?.insertUserRecord(userId: userId)
+        }
+    }
+    
+    func insertUserRecord(userId: String) {
+        let newUser = User(id: userId, name: name, email: email, joined: Date().timeIntervalSince1970)
+        
+        let db = Firestore.firestore()
+        
+        db.collection("users")
+            .document(userId)
+            .setData(newUser.asDictionary())
     }
 }
