@@ -20,7 +20,7 @@ struct SignInView: View {
                 // MARK: Email TextField
                 VStack(alignment: .leading) {
                     LTHTextFieldLabel("Email address", required: true)
-                    TextField("Email address", text: $viewModel.email, prompt: Text("john@appleseed.com"))
+                    TextField(viewModel.emailPlaceholder, text: $viewModel.email)
                         .lthTextFieldStyle(isValid: viewModel.email.isEmpty || viewModel.emailIsValid)
                         .textInputAutocapitalization(.never)
                         .keyboardType(.emailAddress)
@@ -35,7 +35,7 @@ struct SignInView: View {
                 // MARK: Password TextField
                 VStack(alignment: .leading) {
                     LTHTextFieldLabel("Password", required: true)
-                    SecureField("Password", text: $viewModel.password, prompt: Text("Password"))
+                    SecureField("Password", text: $viewModel.password)
                         .lthSecureFieldStyle(isValid: true)
                         .textInputAutocapitalization(.never)
                         .keyboardType(.default)

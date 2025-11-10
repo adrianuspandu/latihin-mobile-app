@@ -56,7 +56,7 @@ struct CreateAccountView: View {
         VStack(alignment: .leading) {
             LTHTextFieldLabel("Name", required: true)
             
-            TextField("Name", text: $viewModel.name, prompt: Text("John Appleseed"))
+            TextField(viewModel.namePlaceholder, text: $viewModel.name)
                 .lthTextFieldStyle(isValid: viewModel.name.isEmpty || viewModel.nameIsValid)
                 .keyboardType(.default)
             
@@ -72,7 +72,7 @@ struct CreateAccountView: View {
     func emailTextfield() -> some View {
         VStack(alignment: .leading) {
             LTHTextFieldLabel("Email address", required: true)
-            TextField("Email address", text: $viewModel.email, prompt: Text("john@appleseed.com"))
+            TextField(viewModel.emailPlaceholder, text: $viewModel.email)
                 .lthTextFieldStyle(isValid: viewModel.email.isEmpty || viewModel.emailIsValid)
                 .textInputAutocapitalization(.never)
                 .keyboardType(.emailAddress)
@@ -89,7 +89,7 @@ struct CreateAccountView: View {
     func passwordTextField() -> some View {
         VStack(alignment: .leading) {
             LTHTextFieldLabel("Password", required: true)
-            SecureField("Password", text: $viewModel.password, prompt: Text("Password"))
+            SecureField("Password", text: $viewModel.password)
                 .lthSecureFieldStyle(isValid: viewModel.password.isEmpty || viewModel.passwordIsValid)
                 .textInputAutocapitalization(.never)
                 .keyboardType(.default)
@@ -106,7 +106,7 @@ struct CreateAccountView: View {
     func confirmPasswordTextField() -> some View {
         VStack(alignment: .leading) {
             LTHTextFieldLabel("Confirm Password", required: true)
-            SecureField("Confirm Password", text: $viewModel.confirmPassword, prompt: Text("Password"))
+            SecureField("Confirm Password", text: $viewModel.confirmPassword)
                 .lthSecureFieldStyle(isValid: viewModel.confirmPassword.isEmpty || viewModel.confirmPasswordIsValid)
                 .textInputAutocapitalization(.never)
                 .keyboardType(.default)

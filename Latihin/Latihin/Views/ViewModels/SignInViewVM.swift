@@ -12,6 +12,8 @@ class SignInViewVM: ObservableObject {
     @Published var email = ""
     @Published var password = ""
     
+    let emailPlaceholder: String = "john@appleseed.com"
+    
     var emailIsValid: Bool { email.wholeMatch(of: emailRegex) != nil }
     var formIsValid: Bool { emailIsValid && !password.isEmpty }
 }
