@@ -44,9 +44,16 @@ struct SignInView: View {
             
             Spacer()
             
-            LTHButton(title: "Sign in", variant: viewModel.formIsValid ? .primary : .disabled) {
-                // Action here
+            LTHButton(title: "Sign in", variant: viewModel.signInButtonVariant) {
+                viewModel.signIn()
             }
+            .alert("Invalid Credentials", isPresented: $viewModel.isShowingErrorAlert, actions: {
+                Button("Ok") {
+                    viewModel.isShowingErrorAlert = false
+                }
+            }, message: {
+                Text("You entered the wrong email address or password. Please try again.")
+            })
             
             Spacer().frame(height: 40)
             
@@ -58,6 +65,9 @@ struct SignInView: View {
                 }
             }
             
+        }
+        .onDisappear {
+            viewModel.resetForm()
         }
         .navigationTitle("Sign In")
         .navigationBarTitleDisplayMode(.inline)

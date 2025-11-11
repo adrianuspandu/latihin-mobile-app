@@ -12,14 +12,18 @@ struct ContentView: View {
     
     var body: some View {
         if viewModel.isSignedIn && !viewModel.currentUserId.isEmpty {
-            tabView()
+            MainTabView()
         } else {
             WelcomeView()
         }
     }
+
+}
+
+struct MainTabView: View {
+    @State var appeared = false
     
-    @ViewBuilder
-    func tabView() -> some View {
+    var body: some View {
         TabView {
             Tab("Home", systemImage: "house.fill") {
                 HomeView()
@@ -38,6 +42,17 @@ struct ContentView: View {
             }
         }
         .tint(.accent)
+        .offset(y: appeared ? 0 : 1000)
+        .onAppear {
+            withAnimation(.bouncy(duration: 0.75)) {
+                appeared = true
+            }
+        }
+        .onDisappear {
+            withAnimation(.easeInOut(duration: 0.75)) {
+                appeared = false
+            }
+        }
     }
 }
 
