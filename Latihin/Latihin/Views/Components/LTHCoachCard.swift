@@ -22,27 +22,25 @@ import SwiftUI
 ///        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 ///        pricePerSession: 200000
 ///    )) {
-///     print("Coach card tapped")
+///     CoachDetailView(coach: coach)
 ///    }
 ///
 ///
-struct LTHCoachCard: View {
+struct LTHCoachCard<Destination: View>: View {
     
     /// The coach data to display
     let coach: Coach
     
-    /// The action to perform when the card is tapped (optional)
-    let action: (() -> Void)?
+    /// The destination view to navigate to when the card is tapped
+    let destination: () -> Destination
     
-    init(coach: Coach, action: (() -> Void)? = nil) {
+    init(coach: Coach, @ViewBuilder destination: @escaping () -> Destination) {
         self.coach = coach
-        self.action = action
+        self.destination = destination
     }
     
     var body: some View {
-        Button(action: {
-            action?()
-        }) {
+        NavigationLink(destination: destination()) {
             VStack(spacing: 0) {
                 // MARK: Profile Photo
                 Image(coach.profileImageName)
@@ -104,7 +102,6 @@ struct LTHCoachCard: View {
             .clipShape(RoundedRectangle(cornerRadius: 24))
             .shadow(color: Color.black.opacity(0.08), radius: 12, x: 0, y: 4)
         }
-        .buttonStyle(.plain)
     }
 }
 
