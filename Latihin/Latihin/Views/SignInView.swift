@@ -52,7 +52,7 @@ struct SignInView: View {
                     viewModel.isShowingErrorAlert = false
                 }
             }, message: {
-                Text("You entered the wrong email address or password. Please try again.")
+                Text(String.errorSignInFailed)
             })
             
             Spacer().frame(height: 40)

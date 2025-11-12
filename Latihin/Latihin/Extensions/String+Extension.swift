@@ -34,5 +34,9 @@ extension String {
 
     // MARK: Strings for Buttons
     static let buttonCreateAccount = "Save"
+    
+    // MARK: Error Messages
+    static let errorSignInFailed = "You entered the wrong email address or password. Please try again."
+    
     // TODO: add the rest....
 }
