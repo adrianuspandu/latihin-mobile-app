@@ -29,8 +29,8 @@ struct LTHCircleSportCards: View {
                     LTHCircleSportCardItem(sport: sport)
                 }
             }
+            .padding(.horizontal, 20)
         }
-        .padding()
     }
 }
 

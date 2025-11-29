@@ -9,7 +9,17 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        Text("Home")
+        NavigationStack {
+            VStack(alignment: .leading) {
+                LTHGreetingMessage(name: "John", location: "Tangerang, Banten")
+                
+                Spacer().frame(height: 32)
+                
+                LTHCircleSportCards()
+                    .padding(.horizontal, -20)
+            }
+            .padding(.horizontal, 20)
+        }
     }
 }
 
